@@ -64,17 +64,11 @@ def post_something():
     person=  Persona(mfinal)
     p=person.porcentajeTotal()
     data2 =  { 'usuario':usuario,
-        'porcentaje': p.get(0),
+        'E':p.get(0),
+        'A': p.get(1),
           'fecha': time.time()
           }
     result2 = firebase.post('/hackandes-1816a/ResultTotal/'+usuario,data2)
-    p2=person.porcentajeJuego()
-    data3 = { 'usuario':usuario,
-        'E':p2.get(0),
-        'A': p2.get(1),
-          'fecha': time.time()
-          }
-    result3 = firebase.post('/hackandes-1816a/Result/'+usuario,data3)
     
     return jsonify({'result': mfinal})
 
