@@ -56,7 +56,7 @@ def post_something():
     mfinal=[]
     for i in rs:
         if(i['usuario']==usuario):
-            mfinal.push(i)
+            mfinal.append(i)
     print(resultget)
     return jsonify(resultget)
 
