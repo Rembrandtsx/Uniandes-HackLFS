@@ -77,8 +77,6 @@ def post_something():
           }
     result3 = firebase.post('/hackandes-1816a/Result/'+usuario,data3)
     
-
-
     return jsonify({'result': mfinal})
 
 # A welcome message to test our server
