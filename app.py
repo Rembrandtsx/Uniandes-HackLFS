@@ -37,22 +37,24 @@ def respond():
 
 @app.route('/data/', methods=['POST'])
 def post_something():
-    """param = request.form.get('name')
+    param = request.form.get('name')
     print(param)
     # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
     
-    auth = request.form.get('user')
-    time = request.form.get('time')
-    check = request.form.get('check')
-    numDibujos = request.form.get('numDibujos')
-"""
+    usuario = request.form.get('usuario')
+    atributo2 = request.form.get('atributo2')
+    atributo3= request.form.get('atributo3')
+    juego = request.form.get('juego')
 
 
-    data =  { 'Name': 'Vivek',
-          'RollNo': 1,
-          'Percentage': 76.02
+    data =  { 'auth':auth,
+        'time': time,
+          'check': check,
+          'juego': juego
           }
-    result = firebase.post('/hackandes-1816a/Test/user',data)
+    result = firebase.post('/hackandes-1816a/Test/'+auth,data)
+    resultget = firebase.get('/hackandes-1816a/Test/', auth)
+    
     print(result)
     return result
 
