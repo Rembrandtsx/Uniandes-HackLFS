@@ -14,7 +14,7 @@ def respond():
     response = {}
 
 
-    result = firebase.get('/hackandes-1816a/Test/', '')
+    result = firebase.get('/hackandes-1816a/Juegos/', '')
     print(result)
 
 
@@ -55,8 +55,8 @@ def post_something():
     result = firebase.post('/hackandes-1816a/Juegos/'+auth,data)
     resultget = firebase.get('/hackandes-1816a/Juegos/', auth)
     
-    print(result)
-    return result
+    print(resultget)
+    return resultget
 
 # A welcome message to test our server
 @app.route('/')
