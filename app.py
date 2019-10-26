@@ -48,7 +48,7 @@ def post_something():
           'atributo3': atributo3,
           'juego': juego
           }
-    result = firebase.post('/hackandes-1816a/Juegos/'+ usuario,data)
+    result = firebase.post('/hackandes-1816a/Juegos/',data)
     resultget = firebase.get('/hackandes-1816a/Juegos/', usuario)
     
     print(resultget)
