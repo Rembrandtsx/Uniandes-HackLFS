@@ -38,6 +38,7 @@ def respond():
 @app.route('/data/', methods=['POST'])
 def post_something():
     usuario = request.form.get('usuario')
+    print(usuario)
     atributo2 = request.form.get('atributo2')
     atributo3= request.form.get('atributo3')
     juego = request.form.get('juego')
@@ -49,7 +50,7 @@ def post_something():
           'juego': juego
           }
     result = firebase.post('/hackandes-1816a/Juegos/',data)
-    resultget = firebase.get('/hackandes-1816a/Juegos/', usuario)
+    resultget = firebase.get('/hackandes-1816a/Juegos/','')
     
     print(resultget)
     return jsonify(resultget)
