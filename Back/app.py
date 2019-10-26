@@ -5,16 +5,16 @@ import os
 firebase = firebase.FirebaseApplication('https://hackandes-1816a.firebaseio.com/', None)
 app = Flask(__name__)
 
-@app.route('/data1/', methods=['GET'])
+@app.route('/data/', methods=['GET'])
 def respond():
     # Retrieve the name from url parameter
     name = request.args.get("name", None)
-
+    
 
     response = {}
 
 
-    result = firebase.get('/hackandes-1816a/Test/', '')
+    result = firebase.get('/hackandes-1816a/Juegos/', '')
     print(result)
 
 
@@ -37,24 +37,33 @@ def respond():
 
 @app.route('/data/', methods=['POST'])
 def post_something():
-    """param = request.form.get('name')
-    print(param)
-    # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
-    """
+    usuario = request.json['usuario']
+    print(usuario)
+    print(request.json)
+    atributo2 = request.json['atributo2']
+    atributo3= request.json['atributo3']
+    juego = request.json['juego']
 
 
-    data =  { 'Name': 'Vivek',
-          'RollNo': 1,
-          'Percentage': 76.02
+    data =  { 'usuario':usuario,
+        'atributo2': atributo2,
+          'atributo3': atributo3,
+          'juego': juego
           }
-    result = firebase.post('/hackandes-1816a/Test/',data)
-    print(result)
-    return result
+    result = firebase.post('/hackandes-1816a/Juegos/',data)
+    resultget = firebase.get('/hackandes-1816a/Juegos/','')
+    rs=resultget.values()
+    mfinal=[]
+    for i in rs:
+        if(i['usuario']==usuario):
+            mfinal.append(i)
+    print(resultget)
+    return jsonify({'result': mfinal})
 
 # A welcome message to test our server
 @app.route('/')
 def index():
-    return "<h1>Welcome to our server !!</h1>"
+    return "<h1>Welcome to our server!!</h1>"
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
