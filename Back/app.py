@@ -47,13 +47,13 @@ def post_something():
     juego = request.form.get('juego')
 
 
-    data =  { 'auth':auth,
-        'time': time,
-          'check': check,
+    data =  { 'usuario':usuario,
+        'atributo2': atributo2,
+          'atributo3': atributo3,
           'juego': juego
           }
-    result = firebase.post('/hackandes-1816a/Test/Juegos/'+auth,data)
-    resultget = firebase.get('/hackandes-1816a/Test/Juegos/', auth)
+    result = firebase.post('/hackandes-1816a/Test/Juegos/'+ usuario,data)
+    resultget = firebase.get('/hackandes-1816a/Test/Juegos/', usuario)
     
     print(resultget)
     return resultget
