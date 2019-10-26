@@ -5,17 +5,17 @@ import os
 firebase = firebase.FirebaseApplication('https://hackandes-1816a.firebaseio.com/', None)
 app = Flask(__name__)
 
-@app.route('/data1/', methods=['GET'])
+@app.route('/data/', methods=['GET'])
 def respond():
     # Retrieve the name from url parameter
     name = request.args.get("name", None)
-
+    
 
     response = {}
 
 
     result = firebase.get('/hackandes-1816a/Test/', '')
-    print(result)
+    print(result.)
 
 
     response=result
@@ -40,14 +40,19 @@ def post_something():
     """param = request.form.get('name')
     print(param)
     # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
-    """
+    
+    auth = request.form.get('user')
+    time = request.form.get('time')
+    check = request.form.get('check')
+    numDibujos = request.form.get('numDibujos')
+"""
 
 
     data =  { 'Name': 'Vivek',
           'RollNo': 1,
           'Percentage': 76.02
           }
-    result = firebase.post('/hackandes-1816a/Test/',data)
+    result = firebase.post('/hackandes-1816a/Test/user',data)
     print(result)
     return result
 
