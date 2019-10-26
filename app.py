@@ -52,7 +52,7 @@ def post_something():
     resultget = firebase.get('/hackandes-1816a/Juegos/', usuario)
     
     print(resultget)
-    return resultget
+    return jsonify(resultget)
 
 # A welcome message to test our server
 @app.route('/')
