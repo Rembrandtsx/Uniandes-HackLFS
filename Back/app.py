@@ -51,7 +51,7 @@ def post_something():
           'juego': juego
           }
     result = firebase.post('/hackandes-1816a/Juegos/',data)
-    resultget = firebase.get('/hackandes-1816a/Juegos/','')
+    resultget = firebase.get('/hackandes-1816a/Juegos/',usuario)
     
     print(resultget)
     return jsonify(resultget)
