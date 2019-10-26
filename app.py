@@ -58,7 +58,7 @@ def post_something():
         if(i['usuario']==usuario):
             mfinal.append(i)
     print(resultget)
-    return jsonify(resultget)
+    return jsonify({'result': mfinal})
 
 # A welcome message to test our server
 @app.route('/')
