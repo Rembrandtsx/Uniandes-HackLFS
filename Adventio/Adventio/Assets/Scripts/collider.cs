@@ -43,7 +43,7 @@ public class collider : MonoBehaviour
 
 
 
-        UnityWebRequest.Post("https://hackandes1.herokuapp.com/data", form);
+        UnityWebRequest.Post("https://hackandes1.herokuapp.com/data", form).SendWebRequest();
 
   }
 
