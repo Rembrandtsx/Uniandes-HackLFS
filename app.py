@@ -2,13 +2,15 @@
 from flask import Flask, request, jsonify
 from firebase import firebase
 import os
+import "./analisis.py"
+import time
 firebase = firebase.FirebaseApplication('https://hackandes-1816a.firebaseio.com/', None)
 app = Flask(__name__)
 
 @app.route('/data/', methods=['GET'])
 def respond():
     # Retrieve the name from url parameter
-    name = request.args.get("name", None)
+    name = request.args.get("usuario", None)
     
 
     response = {}
@@ -46,7 +48,7 @@ def post_something():
 
 
     data =  { 'usuario':usuario,
-        'atributo2': atributo2,
+          'atributo2': atributo2,
           'atributo3': atributo3,
           'juego': juego
           }
@@ -58,6 +60,16 @@ def post_something():
         if(i['usuario']==usuario):
             mfinal.append(i)
     print(resultget)
+
+    r=16
+    data2 =  { 'usuario':usuario,
+        'porcentaje': r,
+          'fecha': time.time()
+          }
+    result = firebase.post('/hackandes-1816a/Result/'+usuario,data)
+    
+
+
     return jsonify({'result': mfinal})
 
 # A welcome message to test our server
