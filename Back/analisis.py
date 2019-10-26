@@ -1,39 +1,32 @@
 from numpy import *
 from numpy.linalg import *
 import os
-import pandas 
+import datos
 import json
 
-class Analisis():
+class Persona():
 
-    def __init__(self,file,puntos):
-        self.file = file
-        self.datos = self.openFile(self.file)
-        self.X = array(self.darMatrizDeFeatures(self.datos))
-        self.amount = len(self.X)
-        self.puntos = puntos
-
-    def openFile(self,file):
-        with open(file) as features:
-            feat = json.load(features)
-        return feat
-
+    def __init__(self,lista):
+        self.lista = lista
+        self.amount = self.lista.shape[0]
+        self.X = self.darMatrizDeFeatures(self.lista)
+        
     ## ACÁ VA A FALTAR TRATAR LOS DATOS
 
-    def darMatrizDeFeatures(self,datos): #loadea, arregla y normaliza
-        X = zeros((10,10))
-        
-        return X
-
-    #t es el tiempo en pantalla o si acertó o falló en lo que hizo.
-    #Los puntajes son del 0-100
-    def sis_de_puntos(self,X):
-        for i in range(X.shape[1]):
+    def darMatrizDeFeatures(self,X): #loadea, arregla y normaliza
+        X = array([[i['juego'],i['atributo2'],i['atributo3']] for i in X])
+        b = [X[:,i]]
+        for i in range(1,X.shape[1]):
             a = X[:,i]
             if type(a[0]) == bool:
-                X[:,i] = list(map(int,a))
-            elif type(a) == float:
-                normalizacion = 
+                X[:,i] = array(list(map(int,a)))
+            else:
+                o = array(X[:,i])
+                X[:,i] = (o-o.mean())/std(o)
+        b = array(b).T 
+        X = [b[b[:,0]==i+1][:,1:] for i in range(max(X[:,0]))]
+        return X
+
 
     def k_vals(self, s, percent=0.9): #esto no importa
         k = 0
@@ -43,17 +36,23 @@ class Analisis():
             vari = sum(s[:k])/sum(s)
         return k
 
-    def reduc_dimen(self): #este toca llamarlo para acer reduccion de dimensiones
-        covar = (1/(self.amount -1))* self.X.T.dot(self.X)
+    def reduc_dimen(self,X): #este toca llamarlo para acer reduccion de dimensiones
+        covar = (1/(self.amount -1))* X.T.dot(X)
         u,s,v = svd(covar)
         k = self.k_vals(self,s)
         ured = u[:,:k]
-        z = self.X.dot(ured)
+        z = X.dot(ured)
         return z, u 
 
     
-    def PCA(self,u): #este hace las lineas de tendencia
+    def GD(self,u): #este hace las lineas de tendencia por gradient descent
         return 0
+
+    def porcentajeTotal(self): #retorna el porcentaje float de la entrada nueva total (guardar esto con la fecha)
+        return 0
+
+    def porcentajeJuego(self): #retorna el porcentaje float de la nueva entrada para todos los juegos. 
+        return [0,0,0]
 
 
 
