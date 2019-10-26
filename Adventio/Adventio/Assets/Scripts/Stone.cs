@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stone : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Stone : MonoBehaviour
     
     int routePosition;
 
+    int countOfSteps;
     public int steps;
     
     bool isMoving;
@@ -44,7 +46,10 @@ public class Stone : MonoBehaviour
             
             yield return new WaitForSeconds(0.01f);
             steps--;
-            
+            countOfSteps++;
+            if(countOfSteps >= currentRoute.childNodeList.Count * 3){
+                Debug.Log("Final del Juego 3era Ronda");
+            }
         }
 
         isMoving = false;
@@ -55,6 +60,7 @@ public class Stone : MonoBehaviour
     void play(){
         if(currentRoute.childNodeList[routePosition].gameObject.tag == "lab")
         {
+            SceneManager.LoadScene("Laberynth", LoadSceneMode.Single);
             Debug.Log("Azul");
         }else{
             Debug.Log("Rojo");
