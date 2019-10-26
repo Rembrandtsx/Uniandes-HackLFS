@@ -61,7 +61,7 @@ def post_something():
         if(i['usuario']==usuario):
             mfinal.append(i)
     print(resultget)
-    person= new Persona(mfinal)
+    person=  Persona(mfinal)
     p=person.porcentajeTotal()
     data2 =  { 'usuario':usuario,
         'porcentaje': p.get(0),
