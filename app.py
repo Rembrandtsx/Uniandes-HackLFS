@@ -15,7 +15,7 @@ def respond():
 
 
     result = firebase.get('/hackandes-1816a/Test/', '')
-    print(result.)
+    print(result)
 
 
     response=result
