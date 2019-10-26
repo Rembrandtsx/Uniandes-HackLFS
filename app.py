@@ -14,7 +14,7 @@ def respond():
     response = {}
 
 
-    result = firebase.get('/hackandes-1816a/Test/Juegos/', '')
+    result = firebase.get('/hackandes-1816a/Test/juegos/', '')
     print(result)
 
 
@@ -48,8 +48,8 @@ def post_something():
           'atributo3': atributo3,
           'juego': juego
           }
-    result = firebase.post('/hackandes-1816a/Test/Juegos/'+ usuario,data)
-    resultget = firebase.get('/hackandes-1816a/Test/Juegos/', usuario)
+    result = firebase.post('/hackandes-1816a/Test/juegos/'+ usuario,data)
+    resultget = firebase.get('/hackandes-1816a/Test/juegos/', usuario)
     
     print(resultget)
     return resultget
