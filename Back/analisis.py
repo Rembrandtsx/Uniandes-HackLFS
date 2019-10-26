@@ -49,7 +49,7 @@ class Persona():
     def GD(self,X): #este hace las lineas de tendencia por gradient descent
         todos = []
         for i in X:
-            todos.append(reduc_dimen(i))
+            todos.append(self.reduc_dimen(i))
         xs=[todos[0][0],todos[1][:,0],todos[2][:,0]]
         xss = []
         for i in xs:
