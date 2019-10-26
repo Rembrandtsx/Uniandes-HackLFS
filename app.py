@@ -37,12 +37,12 @@ def respond():
 
 @app.route('/data/', methods=['POST'])
 def post_something():
-    usuario = request.form.get('usuario')
+    usuario = request.json['usuario']
     print(usuario)
     print(request.json)
-    atributo2 = request.form.get('atributo2')
-    atributo3= request.form.get('atributo3')
-    juego = request.form.get('juego')
+    atributo2 = request.json['atributo2']
+    atributo3= request.json['atributo3']
+    juego = request.json['juego']
 
 
     data =  { 'usuario':usuario,
