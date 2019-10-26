@@ -69,8 +69,7 @@ def post_something():
           }
     result2 = firebase.post('/hackandes-1816a/ResultTotal/'+usuario,data2)
     p2=person.porcentajeJuego()
-    data3 =  
-    { 'usuario':usuario,
+    data3 = { 'usuario':usuario,
         'E':p2.get(0),
         'A': p2.get(1),
           'fecha': time.time()
