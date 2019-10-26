@@ -58,17 +58,22 @@ class Persona():
         yss = []
         for i in ys:
             yss.extend(i)
-        xss = array(xss)
-        yss = array(yss)
+        xss1 = array(xss).reshape(len(xss),1)
+        xss1 = insert(xss1,0,1,axis=1)
+        yss1 = array(yss).reshape(len(yss),1)
         N=200
         theta = 0
         alpha = 0.4
         for i in range(N):
-            theta = theta - (alpha/len(xss))*np.matmul(xss.T,(xss.dot(theta)-yss))
-
-        return lambda m: theta[0]+theta[1]*m
+            theta = theta - (alpha/len(xss1))*np.matmul(xss1.T,(xss1.dot(theta)-yss1))
+        return xss, yss, lambda m: theta[0]+theta[1]*m
 
     def porcentajeTotal(self): #retorna el porcentaje float de la entrada nueva total (guardar esto con la fecha)
-
-        return {'E':30,'A':70}
+        x,y,f = self.GD(self.X)
+        por = 0
+        total = len(x)
+        if(y<f(x)):
+            por += 1
+        por=por*100/total
+        return {'E':por,'A':100-por}
 
