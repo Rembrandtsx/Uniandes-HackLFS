@@ -33,6 +33,10 @@ public class SimpleCharacterControl : MonoBehaviour {
     private bool m_isGrounded;
     private List<Collider> m_collisions = new List<Collider>();
 
+    protected Joystick floatingJoystick;
+
+
+
     private void OnCollisionEnter(Collision collision)
     {
         ContactPoint[] contactPoints = collision.contacts;
@@ -106,8 +110,11 @@ public class SimpleCharacterControl : MonoBehaviour {
 
     private void TankUpdate()
     {
-        float v = Input.GetAxis("Vertical");
-        float h = Input.GetAxis("Horizontal");
+
+        floatingJoystick = FindObjectOfType<Joystick>();
+        float v = Input.GetAxis("Vertical") + floatingJoystick.Vertical;;
+        float h = Input.GetAxis("Horizontal") + floatingJoystick.Horizontal;
+
 
         bool walk = Input.GetKey(KeyCode.LeftShift);
 
