@@ -1,11 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class collider : MonoBehaviour
 {
+
+    float levelTimer;
+    bool updateTimer = true;
+
+    public Text text;
+    public GameObject oro, plata, bronce;
+
+    
+  void Start(){
+      oro.SetActive(false);
+      plata.SetActive(false);
+      bronce.SetActive(false);
+
+      levelTimer = 0.0f;
+      Debug.Log("login Time"+ levelTimer);
+  }
+  void Update(){
+    if (updateTimer){levelTimer += Time.deltaTime;}
+  }
   void OnCollisionEnter(Collision col){
-      Debug.Log(gameObject.name + "Collided with: " + col.gameObject.name);
+      updateTimer = false;
+      Debug.Log(gameObject.name + "Collided with: " + col.gameObject.name + "Time Elapsed: " + levelTimer);
+      if(levelTimer <= 23.5f){
+          oro.SetActive(true);
+      }else if(levelTimer>23.5f &&  levelTimer<=30.0f){
+          plata.SetActive(true);
+      }else {
+          bronce.SetActive(true);
+      }
+      text.text = levelTimer + "S";
+
   }
 
 }

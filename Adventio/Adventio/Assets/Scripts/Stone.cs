@@ -18,7 +18,7 @@ public class Stone : MonoBehaviour
     bool isMoving;
     
     void Update(){
-        if(Input.GetKeyDown(KeyCode.Space)&& !isMoving){
+        if((Input.GetKeyDown(KeyCode.Space)&& !isMoving)||(Input.GetTouch(1) !=null && !isMoving)){
             steps = Random.Range(1,7);
             Debug.Log("El Dado es de:" + steps);
                 StartCoroutine(Move());
