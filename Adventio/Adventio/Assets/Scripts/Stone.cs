@@ -7,7 +7,7 @@ public class Stone : MonoBehaviour
 {
     public Route currentRoute;
 
-    public GameObject prefab;
+    public GameObject prefab, dado1, dado2, dado3,dado4,dado5, dado6;
 
     
     int routePosition;
@@ -17,9 +17,40 @@ public class Stone : MonoBehaviour
     
     bool isMoving;
     
+
+    void Start(){
+        dado1.SetActive(false);
+        dado2.SetActive(false);
+        dado3.SetActive(false);
+        dado4.SetActive(false);
+        dado5.SetActive(false);
+        dado6.SetActive(false);
+    }
     void Update(){
-        if(Input.GetKeyDown(KeyCode.Space)&& !isMoving){
+        if((Input.GetKeyDown(KeyCode.Space)&& !isMoving)||( Input.GetMouseButtonDown(0) && !isMoving)){
+            dado1.SetActive(false);
+            dado2.SetActive(false);
+            dado3.SetActive(false);
+            dado4.SetActive(false);
+            dado5.SetActive(false);
+            dado6.SetActive(false);
             steps = Random.Range(1,7);
+            if(steps == 1){
+                dado1.SetActive(true);
+            }else if(steps == 2){
+                dado2.SetActive(true);
+            }else if(steps == 3){
+                dado3.SetActive(true);
+                }
+                else if(steps == 4){
+                    dado4.SetActive(true);
+                    }
+                else if(steps == 5){
+                    dado5.SetActive(true);
+                    }
+                else{
+                    dado6.SetActive(true);
+                    }
             Debug.Log("El Dado es de:" + steps);
                 StartCoroutine(Move());
             
