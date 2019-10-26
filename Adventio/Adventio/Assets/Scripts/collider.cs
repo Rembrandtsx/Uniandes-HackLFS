@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 public class collider : MonoBehaviour
 {
 
@@ -34,6 +35,15 @@ public class collider : MonoBehaviour
           bronce.SetActive(true);
       }
       text.text = levelTimer + "S";
+        WWWForm form = new WWWForm();
+        form.AddField("usuario", "Juan");
+        form.AddField("atributo2", levelTimer/1000 + "");
+        form.AddField("atributo3", Random.Range(1,7) + "");
+        form.AddField("juego", 1 + "");
+
+
+
+        UnityWebRequest.Post("https://hackandes1.herokuapp.com/data", form);
 
   }
 
