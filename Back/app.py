@@ -2,7 +2,7 @@
 from flask import Flask, request, jsonify
 from firebase import firebase
 import os
-from "./analisis.py" import Persona 
+import analisis as Persona 
 
 import time
 firebase = firebase.FirebaseApplication('https://hackandes-1816a.firebaseio.com/', None)
