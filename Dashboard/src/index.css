@@ -1,0 +1,18 @@
+img.img-avatar {
+  margin-right: 30px !important;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #e36158 !important;
+}
+
+a {
+}
+
+li.breadcrumb-item > a {
+  color: #e36158;
+}
+
+.sidebar .nav-link.active .nav-icon {
+  color: #e36158 !important;
+}
