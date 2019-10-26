@@ -39,7 +39,7 @@ def respond():
 def post_something():
     usuario = request.form.get('usuario')
     print(usuario)
-     print(request.json())
+    print(request.json())
     atributo2 = request.form.get('atributo2')
     atributo3= request.form.get('atributo3')
     juego = request.form.get('juego')
