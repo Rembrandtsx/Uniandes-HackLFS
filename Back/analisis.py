@@ -18,15 +18,15 @@ class Persona():
         b = [X[:,i]]
         X= array([X[X[:,0]==i+1][:,1:] for i in range(max(X[:,0]))])
         for i in range(len(X)):
-            a = X[i]
+            a = array(X[i])
             # if type(a[0]) == bool:
             #     X[:,i] = array(list(map(int,a)))
             # else:
             for j in range(a.shape[1]):
-                o = array(a[:,j])
+                o = array(a[:,j]).reshape(a.shape[0],1)
                 b.append((o-o.mean())/std(o))
         b = array(b).T 
-        return X
+        return b
 
 
     def k_vals(self, s, percent=0.99): #esto no importa
@@ -50,17 +50,25 @@ class Persona():
         todos = []
         for i in X:
             todos.append(self.reduc_dimen(i))
-        xs=[todos[0][0],todos[1][:,0],todos[2][:,0]]
+        xs=[todos[0],todos[2],todos[4]]
         xss = []
         for i in xs:
             xss.extend(i)
-        ys=[todos[0][1],todos[1][:,1],todos[2][:,1]]
+        ys=[todos[1],todos[3],todos[5]]
         yss = []
         for i in ys:
             yss.extend(i)
-        
-        return 0
+        xss = array(xss)
+        yss = array(yss)
+        N=200
+        theta = 0
+        alpha = 0.4
+        for i in range(N):
+            theta = theta - (alpha/len(xss))*np.matmul(xss.T,(xss.dot(theta)-yss))
+
+        return lambda m: theta[0]+theta[1]*m
 
     def porcentajeTotal(self): #retorna el porcentaje float de la entrada nueva total (guardar esto con la fecha)
-        return {'E':0,'A':0}
+
+        return {'E':30,'A':70}
 
